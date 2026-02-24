@@ -211,7 +211,7 @@ order = 3
 real = 1;p1 = dim[1];p2 = dim[2];p3 = dim[3];
 A <- array(0.0, dim = c( p1, p2, p3))
 for (i3 in 1:p3) {
-  A[1, 1:p2, i3] <- real
+  A[1:p1, 1, i3] <- real
 }
 A <- as.tensor(A);
 
@@ -251,6 +251,7 @@ for (nm in 1:num) {
   EE <- sqrt(sum((A_es@data - A@data)^2));
   EE_100[nm] <- EE;
 }
+
 
 
 
