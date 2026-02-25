@@ -264,7 +264,7 @@ def Gibbs_MDGDP(n,R,p1,p2,p3,D,tau,sigma_real,M,burn):
     
     # 另第一层矩阵的真实值围成三角形
     for i3 in range(p3):
-        W[i3, 0:1, 0:p1] = real;
+        W[i3, 0:p2, 0:1] = real;
     
     # -----------------------------随机参数观测值yi----------------------------------
     
@@ -546,6 +546,7 @@ for nm in range(num):
     f = Gibbs_MDGDP(n=800,R=3,p1=50,p2=50,p3=3,D=3,tau=0.25,sigma_real=0.5,M=1000,burn=500)
     EE_100.append(f[0]);TP_100.append(f[1]);FP_100.append(f[2]);
     TN_100.append(f[3]);FN_100.append(f[4]);
+
 
 
 
