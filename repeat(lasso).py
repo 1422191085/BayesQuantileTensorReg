@@ -116,7 +116,7 @@ def Gibbs_MDGDP(n,R,p1,p2,p3,D,tau,sigma_real,M,burn):
     real = 1;
     # 另第一层矩阵的真实值围成三角形
     for i3 in range(p3):
-        W[i3, 0:1, 0:p1] = real;
+        W[i3, 0:p2, 0:1] = real;
     
     # -----------------------------随机参数观测值yi----------------------------------
     # torch.sum(torch.mul(W,x)) 表示W和x的内积
@@ -408,19 +408,20 @@ def Gibbs_MDGDP(n,R,p1,p2,p3,D,tau,sigma_real,M,burn):
 
 
 #------------------------------------重复实验-----------------------------------
-num = 50;#重复模拟实验的次数
-EE_100 = list();TP_100 = list();FP_100 = list();
+num = 200;#重复模拟实验的次数
+TP_100 = list();FP_100 = list();
 
-TN_100 = list();FN_100 = list();EE1_100 = list();
+TN_100 = list();FN_100 = list();EE_100 = list();
 
 #f = Gibbs_MDGDP(n=1000,R=2,p1=5,p2=5,p3=5,D=3,tau=0.5,sigma_real=1,M=1000,burn=500)
 
-for nm in range(16,num):
+for nm in range(num):
     print("正在运行第{}次重复实验。\n".format(nm+1));
     f = Gibbs_MDGDP(n=400,R=3,p1=50,p2=50,p3=3,D=3,tau=0.25,sigma_real=0.5,M=1000,burn=500)
-    EE_100.append(f[0]);TP_100.append(f[1]);FP_100.append(f[2]);
-    TN_100.append(f[3]);FN_100.append(f[4]);EE1_100.append(f[5]);
+    TP_100.append(f[1]);FP_100.append(f[2]);
+    TN_100.append(f[3]);FN_100.append(f[4]);EE_100.append(f[5]);
     
+
 
 
 
